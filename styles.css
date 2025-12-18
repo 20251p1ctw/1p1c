@@ -1,0 +1,348 @@
+/* ============== 重置與全域樣式 ============== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f0f0f;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Noto Serif TC', serif;
+    letter-spacing: 2px;
+}
+
+/* ============== 導覽列 ============== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+.nav-logo {
+    width: 120px;
+    height: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 40px;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    transition: color 0.4s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #8b5cf6;
+    transition: width 0.4s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ============== 首頁英雄區 ============== */
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero::after {                    /* 新增這整個區塊：半透明黑色遮罩 */
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);  /* 這裡控制暗度，0.5 = 50% 黑色 */
+    z-index: 0;                     /* 蓋在影片上，但文字在最上層 */
+    pointer-events: none;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 0 20px;
+    z-index: 1;
+}
+
+.hero-logo {
+    width: 350px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 24px;
+    max-width: 800px;
+    color: #ddd;
+}
+
+/* ============== 通用區塊 ============== */
+.section {
+    padding: 140px 50px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-margin-top: 120px; /* 避免被固定導覽列蓋住 */
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 40px;
+    margin-bottom: 50px;
+    color: #8b5cf6;
+}
+
+.alternate {
+    background: #1a1a1a;
+}
+
+/* 關於我們卡片 */
+.about-card {
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    backdrop-filter: blur(10px);
+}
+
+.goal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.goal-text {
+    font-size: 1.2rem;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* 作品集按鈕 */
+.btn-secondary {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #1a1a1a;
+}
+
+/* ============== 響應式 ============== */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .nav-links {
+        margin-top: 20px;
+    }
+    .nav-links li {
+        margin: 0 20px;
+    }
+    .hero-logo {
+        width: 250px;
+    }
+    .hero-content p {
+        font-size: 20px;
+    }
+    .section {
+        padding: 120px 20px 80px;
+    }
+}
+
+/* ============== 自我介紹白色格子 ============== */
+.intro-card {
+    background: #ffffff;                /* 純白色背景 */
+    color: #333333;                     /* 文字顏色深一點，對比好 */
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* 輕微陰影，增加層次 */
+    max-width: 600px;
+    margin: 40px auto;                  /* 置中 + 上下留空間 */
+    text-align: center;
+    backdrop-filter: blur(5px);         /* 輕微毛玻璃，增加質感 */
+    border: 1px solid #f0f0f0;          /* 細邊框，避免太生硬 */
+    transition: transform 0.3s ease;    /* 輕微 hover 動畫 */
+}
+
+.intro-card:hover {
+    transform: translateY(-5px);        /* 滑鼠移上會微微浮起 */
+}
+
+.intro-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    color: #8b5cf6;                     /* 用你網站的主色紫，呼應整體 */
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.intro-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000000;                     /* 標題更深黑 */
+}
+
+.intro-desc {
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.8;
+}
+
+/* 手機版調整 */
+@media (max-width: 768px) {
+    .intro-card {
+        padding: 30px 20px;
+        margin: 30px 15px;
+    }
+    .intro-card h3 {
+        font-size: 24px;
+    }
+    .intro-title {
+        font-size: 20px;
+    }
+    .intro-desc {
+        font-size: 16px;
+    }
+}
+
+/* ============== 團隊成員並排卡片 ============== */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 三等分並排 */
+    gap: 30px;                              /* 卡片間距 */
+    max-width: 1200px;
+    margin: 60px auto;                     /* 上下間距 + 置中 */
+}
+
+.member-card {
+    background: #ffffff;
+    color: #333333;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);  /* 滑鼠移上微微浮起 */
+}
+
+.member-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 28px;
+    color: #8b5cf6;               /* 紫色標題，呼應網站主色 */
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.member-name {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #000000;
+}
+
+.member-desc {
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.7;
+}
+
+/* ============== 響應式：平板與手機 ============== */
+@media (max-width: 992px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);  /* 平板：兩排 */
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: 1fr;              /* 手機：直排一個 */
+        gap: 25px;
+        margin: 40px auto;
+    }
+    
+    .member-card {
+        padding: 35px 25px;
+    }
+    
+    .member-card h3 {
+        font-size: 24px;
+    }
+    
+    .member-name {
+        font-size: 20px;
+    }
+    
+    .member-desc {
+        font-size: 16px;
+    }
+}
