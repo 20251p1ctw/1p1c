@@ -210,31 +210,51 @@
 
                 // 顯示公告
                 container.innerHTML = announcements.map(ann => `
-                    <article style="margin-bottom: 60px; padding: 30px; background: #FFFFFF; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+                    <article style="margin-bottom: 60px; padding: 30px; background: #FFFFFF; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); overflow: hidden;">
                         <!-- 標題 -->
                         <h3 style="font-size: 32px; color: #FF359A; margin-bottom: 15px;">${ann.title}</h3>
                         
                         <!-- 日期 -->
                         ${ann.date ? `<p style="color:#888; margin-bottom: 25px;"><small>${new Date(ann.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
                         
-                        <!-- 圖片（優化版） -->
-                        ${ann.image ? `
-                            <div style="margin: 0 auto 30px; max-width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
-                                <img src="${ann.image}" alt="${ann.title}" 
-                                    style="width: 100%; height: auto; display: block;">
-                            </div>
-                        ` : ''}
-                        
-                        <!-- 內容 -->
-                        <div style="line-height:1.9; font-size:1.2em; color:#333333; text-align:center; padding:20px; max-width:900px; margin:0 auto;">
+                        <!-- 內容文字先顯示（加 overflow: hidden 防止內部圖片跑出） -->
+                        <div style="
+                            line-height:1.9; 
+                            font-size:1.2em; 
+                            color:#333333; 
+                            text-align:left; 
+                            padding:20px; 
+                            max-width:900px; 
+                            margin:0 auto 40px; 
+                            border-radius:16px; 
+                            background:#f8f8f8; 
+                            overflow:hidden;
+                        ">
                             ${marked.parse(ann.body)
                                 .replace(/src="\/images\//g, 'src="/1p1c/images/')
                                 .replace(/src='\/images\//g, 'src=\'/1p1c/images/')
+                                // 額外：限制內容內圖片不要太大
+                                .replace(/<img/g, '<img style="max-width:100%; height:auto; border-radius:12px; margin:15px auto; display:block;"')
                             }
                         </div>
+                        
+                        <!-- 特色圖片最後顯示（大氣收尾） -->
+                        ${ann.image ? `
+                            <div style="
+                                margin: 20px auto; 
+                                max-width: 95%; 
+                                border-radius: 20px; 
+                                overflow: hidden; 
+                                box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+                            ">
+                                <img src="${ann.image}" 
+                                    alt="${ann.title}" 
+                                    style="width: 100%; height: auto; display: block;">
+                            </div>
+                        ` : ''}
                     </article>
                 `).join('');
-
+                
             } catch (error) {
                 console.error('載入公告失敗:', error);
                 container.innerHTML = `<p style="text-align:center; color:#f66; padding:60px;">載入公告失敗：${error.message}</p>`;
