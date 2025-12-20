@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: 20251p1ctw/1p1c
+  branch: main
+
+media_folder: "images"  # 上傳圖片存這裡（會自動創資料夾）
+public_folder: "/images"
+
+collections:
+  - name: "articles"
+    label: "自訂文章"
+    folder: "articles"  # 文章存成 Markdown 檔案在 /articles 資料夾
+    create: true  # 允許新增
+    slug: "{{slug}}"  # 檔名自動生成
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "日期", name: "date", widget: "datetime" }
+      - { label: "內容（支援富文字）", name: "body", widget: "markdown" }
+      - { label: "特色圖片", name: "image", widget: "image", required: false }
+      - { label: "簡短描述", name: "description", widget: "text", required: false }
