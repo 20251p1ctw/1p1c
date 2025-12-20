@@ -14,8 +14,8 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "標題", name: "title", widget: "string" }
-      - { label: "日期", name: "date", widget: "datetime" }
-      - { label: "內容（支援富文字、圖片、列表等）", name: "body", widget: "markdown" }
-      - { label: "特色圖片", name: "image", widget: "image", required: false }
-      - { label: "簡短描述", name: "description", widget: "text", required: false }
+      - { label: "標題", name: "title", widget: "string", required: true }          # 必填
+      - { label: "日期", name: "date", widget: "datetime", required: true }          # 必填（建議）
+      - { label: "內容（支援富文字、圖片、列表等）", name: "body", widget: "markdown", required: true }  # 必填
+      - { label: "特色圖片", name: "image", widget: "image", required: false }      # 選填
+      - { label: "簡短描述", name: "description", widget: "text", required: false }  # 選填
