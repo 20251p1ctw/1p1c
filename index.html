@@ -9,25 +9,6 @@
     <!-- 引入外部 CSS 檔案 -->
     <link rel="stylesheet" href="styles.css">
 </head>
-
-<script>
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-    });
-
-    // 點選單後自動關閉
-    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-        });
-    });
-</script>
-
 <body>
 
     <!-- 導覽列 -->
@@ -64,7 +45,7 @@
             </ul>
         </div>
     </nav>
-
+    
     <!-- 首頁英雄區（背景影片） -->
     <section id="首頁" class="hero">
         <video autoplay muted loop playsinline class="hero-video">
@@ -188,6 +169,28 @@
         <h2>聯絡我們</h2>
         <p>Email: 2025.1p1c.tw@gmail.com | 官方LINE: @632jsgvl</p>
     </section>
+
+    <!-- ===== 這裡加上 JavaScript，放在 </body> 前 ===== -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        // 確保元素存在才綁定事件（安全做法）
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            // 點選單項目後自動關閉側邊欄
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
