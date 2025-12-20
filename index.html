@@ -186,12 +186,12 @@
             announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             container.innerHTML = announcements.map(ann => `
-                <article style="margin-bottom: 40px; padding: 20px; background: #1a1a1a; border-radius: 12px; text-align: center;">
+                <article style="margin-bottom: 40px; padding: 20px; background: #FFFFFF; border-radius: 12px; text-align: center;">
                     ${ann.image ? `
                         <img src="${ann.image}" alt="${ann.title}" style="max-width:100%; border-radius:12px; margin-bottom:20px; display:block;">
                     ` : ''}
                     <h3 style="font-size: 28px; color: #FF359A; margin-bottom: 10px;">${ann.title}</h3>
-                    ${ann.date ? `<p style="color:#FFFFFF; margin-bottom: 15px;"><small>${new Date(ann.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
+                    ${ann.date ? `<p style="color:#aaa; margin-bottom: 15px;"><small>${new Date(ann.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
                     <div style="line-height:1.9; font-size:1.1em; color:#000000; text-align:center; background-color:#2a2a2a; padding:25px; border-radius:12px; max-width:900px; margin:20px auto;">
                         ${marked.parse(ann.body)
                             .replace(/src="\/images\//g, 'src="/1p1c/images/')
