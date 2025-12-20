@@ -6,7 +6,7 @@
     <title>作品集 - 一拍一剪</title>
     <link rel="icon" href="./img/logo-正.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- 使用跟主頁相同的 styles.css -->
+    <link rel="stylesheet" href="./styles.css"> <!-- 使用跟主頁相同的 styles.css -->
 </head>
 <body>
 
@@ -20,7 +20,7 @@
             <li><a href="index.html#首頁">首頁</a></li>
             <li><a href="index.html#關於我們">關於我們</a></li>
             <li><a href="index.html#最新公告">最新公告</a></li>
-            <li><a href="#作品集">作品集</a></li> <!-- 當前頁高亮可加 class="active" -->
+            <li><a href="index.html#作品集">作品集</a></li> <!-- 當前頁高亮可加 class="active" -->
             <li><a href="index.html#聯絡我們">聯絡我們</a></li>
         </ul>
 
@@ -35,7 +35,7 @@
                 <li><a href="index.html#首頁">首頁</a></li>
                 <li><a href="index.html#關於我們">關於我們</a></li>
                 <li><a href="index.html#最新公告">最新公告</a></li>
-                <li><a href="#作品集">作品集</a></li>
+                <li><a href="index.html#作品集">作品集</a></li>
                 <li><a href="index.html#聯絡我們">聯絡我們</a></li>
             </ul>
         </div>
@@ -78,7 +78,8 @@
         }
     </script>
 
-    <section id="custom-articles">
+    <!-- 自訂文章區塊 -->
+    <section id="custom-articles" class="section custom-works">
         <h2>自訂精選文章</h2>
         <div id="articles-container"></div>
     </section>
@@ -128,7 +129,7 @@
                             alt="${article.title}" 
                             style="max-width: 100%; height: auto; border-radius: 12px; margin: 0 auto 25px; display: block; box-shadow: 0 8px 25px rgba(0,0,0,0.4);">
                     ` : ''}
-                    <h3 style="font-size: 2em; color: #8b5cf6; margin-bottom: 10px;">${article.title}</h3>
+                    <h3 style="font-size: 16px; color: #8b5cf6; margin-bottom: 10px;">${article.title}</h3>
                     ${article.date ? `<p style="color:#aaa; margin-bottom: 20px;"><small>${new Date(article.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
                     ${article.description ? `<p style="font-size:1.2em; color:#ddd; margin: 20px 0; max-width: 800px; margin-left: auto; margin-right: auto;">${article.description}</p>` : ''}
                     <div style="line-height:1.9; font-size:1.1em; color:#e0e0e0; max-width: 800px; margin: 0 auto; text-align: left;">
