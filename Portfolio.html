@@ -113,14 +113,27 @@
             articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             // 顯示
-            const container = document.getElementById('articles-container');
             container.innerHTML = articles.map(article => `
-                <article style="margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    ${article.image ? `<img src="${article.image.startsWith('http') ? article.image : '/1p1c' + article.image}" alt="${article.title}" style="max-width:100%; border-radius:8px; margin-bottom:15px;">` : ''}
-                    <h3>${article.title}</h3>
-                    <p><small>${new Date(article.date).toLocaleDateString('zh-TW')}</small></p>
-                    ${article.description ? `<p>${article.description}</p>` : ''}
-                    <div>${marked.parse(article.body)}</div>  <!-- 需要 marked.js 解析 Markdown -->
+                <article style="margin-bottom: 60px; padding: 20px; text-align: center; border-bottom: 1px solid #444;">
+                    ${article.image ? `
+                        <img 
+                            src="${article.image.startsWith('http') ? article.image : '/1p1c' + article.image}" 
+                            alt="${article.title}" 
+                            style="
+                                max-width: 100%; 
+                                height: auto; 
+                                border-radius: 12px; 
+                                margin: 0 auto 25px; 
+                                display: block;
+                                box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+                            ">
+                    ` : ''}
+                    <h3 style="font-size: 2em; color: #8b5cf6; margin-bottom: 10px;">${article.title}</h3>
+                    ${article.date ? `<p style="color:#aaa; margin-bottom: 20px;"><small>${new Date(article.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
+                    ${article.description ? `<p style="font-size:1.2em; color:#ddd; margin: 20px 0; max-width: 800px; margin-left: auto; margin-right: auto;">${article.description}</p>` : ''}
+                    <div style="line-height:1.9; font-size:1.1em; color:#e0e0e0; max-width: 800px; margin: 0 auto; text-align: left;">
+                        ${marked.parse(article.body)}
+                    </div>
                 </article>
             `).join('');
         }
