@@ -524,9 +524,11 @@ h1, h2, h3 {
 }
 
 .btn-icon {
-    width: 32px;
-    height: 32px;
-    margin-right: 12px;
+    width: 40px !important;   /* 強制固定寬度 */
+    height: 40px !important;  /* 強制固定高度 */
+    margin-right: 15px;
+    object-fit: contain;      /* 保持比例不變形 */
+    flex-shrink: 0;           /* 防止被壓縮 */
 }
 
 /* Email 按鈕 - 紫色主題 */
@@ -653,5 +655,28 @@ h1, h2, h3 {
     .contact-btn {
         width: 80%;
         max-width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 0 20px;
+    }
+    
+    .contact-btn {
+        width: 90%;
+        max-width: 350px;
+        padding: 18px 20px;
+        font-size: 18px;
+        justify-content: center;  /* 圖示+文字置中 */
+    }
+    
+    .btn-icon {
+        width: 36px !important;
+        height: 36px !important;
+        margin-right: 12px;
     }
 }
