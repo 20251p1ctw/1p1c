@@ -124,6 +124,7 @@
             // 顯示文章
             container.innerHTML = articles.map(article => `
                 <article style="margin-bottom: 60px; padding: 20px; text-align: center; border-bottom: 1px solid #444;">
+
                     <!-- 標題先顯示（粉紅色大字） -->
                     <h3 style="font-size: 30px; color: #FF359A; margin-bottom: 20px;">${article.title}</h3>
                     
@@ -141,7 +142,7 @@
                     ${article.description ? `<p style="font-size:1.2em; color:#ddd; margin: 20px 0; max-width: 800px; margin-left: auto; margin-right: auto;">${article.description}</p>` : ''}
                     
                     <!-- 內容（自動補路徑） -->
-                    <div style="line-height:1.9; font-size:1.1em; color:#e0e0e0; max-width: 800px; margin: 0 auto; text-align: left;">
+                    <div style="line-height:1.9; font-size:24px; color:#e0e0e0; max-width: 800px; margin: 0 auto; text-align: left;">
                         ${marked.parse(article.body)
                             .replace(/src="\/images\//g, 'src="/1p1c/images/')
                             .replace(/src='\/images\//g, 'src=\'/1p1c/images/')
