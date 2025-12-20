@@ -9,13 +9,35 @@
     <!-- 引入外部 CSS 檔案 -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    // 點選單後自動關閉
+    document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+</script>
+
 <body>
 
     <!-- 導覽列 -->
-    <nav>
+    <nav class="navbar">
+        <!-- Logo -->
         <a href="index.html" class="logo">
             <img src="./img/logo.png" alt="一拍一剪 Logo" class="nav-logo">
         </a>
+
+        <!-- 電腦版選單 -->
         <ul class="nav-links">
             <li><a href="#首頁">首頁</a></li>
             <li><a href="#關於我們">關於我們</a></li>
@@ -23,6 +45,24 @@
             <li><a href="#作品集">作品集</a></li>
             <li><a href="#聯絡我們">聯絡我們</a></li>
         </ul>
+
+        <!-- 手機版漢堡按鈕 -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- 手機側邊選單（預設隱藏） -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="#首頁">首頁</a></li>
+                <li><a href="#關於我們">關於我們</a></li>
+                <li><a href="#最新公告">最新公告</a></li>
+                <li><a href="#作品集">作品集</a></li>
+                <li><a href="#聯絡我們">聯絡我們</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- 首頁英雄區（背景影片） -->
