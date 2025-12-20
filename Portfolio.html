@@ -108,10 +108,16 @@
                         const body = frontMatter[2];
                         const title = yaml.match(/title: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '無標題';
                         const date = yaml.match(/date: (.*)/)?.[1] || '';
-                        const image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+
+                        let image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+                        // 自動補 /1p1c（只對相對路徑）
+                        if (image && !image.startsWith('http') && !image.startsWith('/1p1c')) {
+                            image = '/1p1c' + image;
+                        }
+
                         const description = yaml.match(/description: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
 
-                        if (title) {  // 只有有標題的才加入
+                        if (title) {
                             articles.push({ title, date, body, image, description });
                         }
                     }
