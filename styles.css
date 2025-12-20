@@ -432,3 +432,64 @@ h1, h2, h3 {
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
 }
+
+/* 作品集頁面專用容器 */
+.portfolio-container {
+    padding: 120px 50px 100px;  /* 跟 .section 一致，避免被導覽列蓋住 */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.Instagram, .YouTube {
+    margin-bottom: 100px;
+}
+
+/* 手機版調整 */
+@media (max-width: 768px) {
+    .portfolio-container {
+        padding: 100px 20px 80px;
+    }
+}
+
+/* ============== 作品集頁面專用 ============== */
+.portfolio-section {
+    padding: 120px 50px 100px;  /* 上方留空間，避免被導覽列蓋住 */
+    background-color: #0f0f0f; /* 深色背景統一 */
+    text-align: center;
+}
+
+.portfolio-section h2 {
+    font-size: 40px;
+    color: #8b5cf6;
+    margin-bottom: 60px;
+}
+
+.social-embed {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+/* 讓 Elfsight 嵌入更適配深色主題（可選） */
+.instagram-embed,
+.youtube-embed {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* 手機版調整 */
+@media (max-width: 768px) {
+    .portfolio-section {
+        padding: 100px 20px 80px;
+    }
+    
+    .portfolio-section h2 {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .social-embed {
+        margin: 60px auto;
+    }
+}

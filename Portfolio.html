@@ -1,42 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="style2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集 - 一拍一剪</title>
+    <link rel="icon" href="./img/logo-正.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- 使用跟主頁相同的 styles.css -->
 </head>
 <body>
 
-    <nav>
+    <!-- 導覽列（跟 index.html 完全一致） -->
+    <nav class="navbar">
         <a href="index.html" class="logo">
             <img src="./img/logo.png" alt="一拍一剪 Logo" class="nav-logo">
         </a>
+
         <ul class="nav-links">
             <li><a href="index.html#首頁">首頁</a></li>
             <li><a href="index.html#關於我們">關於我們</a></li>
             <li><a href="index.html#最新公告">最新公告</a></li>
-            <li><a href="index.html#作品集">作品集</a></li>
+            <li><a href="#作品集">作品集</a></li> <!-- 當前頁高亮可加 class="active" -->
             <li><a href="index.html#聯絡我們">聯絡我們</a></li>
         </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#首頁">首頁</a></li>
+                <li><a href="index.html#關於我們">關於我們</a></li>
+                <li><a href="index.html#最新公告">最新公告</a></li>
+                <li><a href="#作品集">作品集</a></li>
+                <li><a href="index.html#聯絡我們">聯絡我們</a></li>
+            </ul>
+        </div>
     </nav>
 
-<div class="container">
+    <!-- 作品集主內容區 -->
+    <section id="作品集" class="section portfolio-section">
+        <h2>作品集</h2>
 
-<section class="Instagram">
-    <script src="https://elfsightcdn.com/platform.js" async ></script>
-    <div class="elfsight-app-b96c83f2-5c3f-4ca0-a3bc-4bf5de7c42c3"  data-elfsight-app-lazy></div>
-</section>
-<section class="YouTube">
-<!-- Elfsight YouTube Gallery | Untitled YouTube Gallery -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
-    <div class="elfsight-app-270f54ef-56e1-4231-ab4b-837902bf6af2" data-elfsight-app-lazy></div>
-</section>
-<section id="聯絡我們" class="section alternate">
-    <h2>聯絡我們</h2>
-    <p>Email: 2025.1p1c.tw@gmail.com | 官方LINE: @632jsgvl</p>
-</section>
+        <!-- Instagram 嵌入 -->
+        <div class="social-embed instagram-embed">
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-b96c83f2-5c3f-4ca0-a3bc-4bf5de7c42c3" data-elfsight-app-lazy></div>
+        </div>
 
+        <!-- YouTube 嵌入 -->
+        <div class="social-embed youtube-embed">
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-270f54ef-56e1-4231-ab4b-837902bf6af2" data-elfsight-app-lazy></div>
+        </div>
+    </section>
+
+    <!-- JavaScript（漢堡選單功能） -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
