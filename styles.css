@@ -208,6 +208,21 @@ h1, h2, h3 {
     background: #1a1a1a;
 }
 
+/* 讓 alternate 背景區塊全寬 */
+.section.alternate {
+    background: #1a1a1a;
+    padding: 100px 50px 80px;   /* 保持原本上下內距 */
+    margin: 0;                  /* 取消 auto 置中 */
+    max-width: none;            /* 取消寬度限制，讓它全寬 */
+}
+
+/* 裡面的內容還是置中、限制寬度 */
+.section.alternate .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 /* 關於我們卡片（目標卡片） */
 .about-card {
     background: rgba(255, 255, 255, 0.95);
@@ -374,7 +389,7 @@ h1, h2, h3 {
     }
 
     .section {
-        padding: 120px 20px 80px;
+        padding: 90px 20px 60px;
     }
 
     .members-grid {
