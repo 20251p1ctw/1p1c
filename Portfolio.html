@@ -108,16 +108,10 @@
                         const body = frontMatter[2];
                         const title = yaml.match(/title: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '無標題';
                         const date = yaml.match(/date: (.*)/)?.[1] || '';
-
-                        let image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
-                        // 自動補 /1p1c（只對相對路徑）
-                        if (image && !image.startsWith('http') && !image.startsWith('/1p1c')) {
-                            image = '/1p1c' + image;
-                        }
-
+                        const image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
                         const description = yaml.match(/description: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
 
-                        if (title) {
+                        if (title) {  // 只有有標題的才加入
                             articles.push({ title, date, body, image, description });
                         }
                     }
@@ -139,7 +133,10 @@
                     ${article.date ? `<p style="color:#aaa; margin-bottom: 20px;"><small>${new Date(article.date).toLocaleDateString('zh-TW')}</small></p>` : ''}
                     ${article.description ? `<p style="font-size:1.2em; color:#ddd; margin: 20px 0; max-width: 800px; margin-left: auto; margin-right: auto;">${article.description}</p>` : ''}
                     <div style="line-height:1.9; font-size:1.1em; color:#e0e0e0; max-width: 800px; margin: 0 auto; text-align: left;">
-                        ${marked.parse(article.body)}
+                        ${marked.parse(article.body)
+                            .replace(/src="\/images\//g, 'src="/1p1c/images/')
+                            .replace(/src='\/images\//g, 'src=\'/1p1c/images/')
+                        }
                     </div>
                 </article>
             `).join('');
