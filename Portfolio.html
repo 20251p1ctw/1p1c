@@ -108,7 +108,7 @@
                         const body = frontMatter[2];
                         const title = yaml.match(/title: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '無標題';
                         const date = yaml.match(/date: (.*)/)?.[1] || '';
-                        const image = yaml.match(/image: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+                        const image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
                         const description = yaml.match(/description: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
 
                         if (title) {  // 只有有標題的才加入
