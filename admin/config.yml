@@ -2,7 +2,7 @@ backend:
   name: github
   repo: 20251p1ctw/1p1c
   branch: main
-  auth_endpoint: https://sveltia-cms-auth.yourname.workers.dev  # 換成您部署的 URL
+  base_url: https://sveltia-cms-auth.a0930619084.workers.dev  # 您的代理網址
 
 media_folder: "images"
 public_folder: "/images"
