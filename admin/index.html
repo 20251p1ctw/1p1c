@@ -1,35 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>內容管理</title>
-    <script src="https://cdn.tinacms.org/latest"></script>
+    <script type="module" src="https://unpkg.com/decap-cms@^3.3.0/dist/decap-cms.js"></script>
 </head>
-<body>
-    <script>
-        TinaCMS({
-            apis: {
-                github: {
-                    branch: 'main',  // 您的分支
-                    repo: '20251p1ctw/1p1c'  // 您的儲存庫
-                }
-            },
-            collections: [
-                {
-                    name: 'articles',
-                    label: '自訂文章',
-                    path: 'articles',  // 文章存這裡（會自動創資料夾）
-                    fields: [
-                        { type: 'string', name: 'title', label: '標題', isTitle: true, required: true },
-                        { type: 'datetime', name: 'date', label: '日期' },
-                        { type: 'rich-text', name: 'body', label: '內容（支援富文字、圖片）', isBody: true },
-                        { type: 'image', name: 'image', label: '特色圖片' },
-                        { type: 'string', name: 'description', label: '簡短描述', ui: { component: 'textarea' } }
-                    ]
-                }
-            ]
-        });
-    </script>
-</body>
+<body></body>
 </html>
