@@ -78,5 +78,62 @@
         }
     </script>
 
+    <!-- 自訂精選作品區（Decap CMS 管理） -->
+    <section class="custom-works">
+        <h2>精選作品</h2>
+        <div class="works-grid" id="worksGrid">
+            <p>載入中...</p>
+        </div>
+    </section>
+
+    <script>
+        // 從 /works 資料夾讀取所有 markdown 檔並顯示
+        fetch('https://api.github.com/repos/20251p1ctw/1p1c/contents/works')
+            .then(response => response.json())
+            .then(files => {
+                const grid = document.getElementById('worksGrid');
+                grid.innerHTML = '';
+
+                // 過濾只取 .md 檔
+                const mdFiles = files.filter(file => file.name.endsWith('.md'));
+
+                // 依日期排序（新→舊）
+                mdFiles.sort((a, b) => b.name.localeCompare(a.name));
+
+                if (mdFiles.length === 0) {
+                    grid.innerHTML = '<p>目前尚無精選作品</p>';
+                    return;
+                }
+
+                mdFiles.forEach(file => {
+                    fetch(file.download_url)
+                        .then(res => res.text())
+                        .then(content => {
+                            // 解析 YAML frontmatter
+                            const frontmatter = content.match(/^---\n([\s\S]*?)\n---/);
+                            if (!frontmatter) return;
+
+                            const data = {};
+                            frontmatter[1].split('\n').forEach(line => {
+                                const [key, ...value] = line.split(': ');
+                                if (key && value) data[key.trim()] = value.join(': ').replace(/"/g, '').trim();
+                            });
+
+                            const item = document.createElement('div');
+                            item.className = 'work-item';
+                            item.innerHTML = `
+                                <img src="${data.image}" alt="${data.title}" loading="lazy">
+                                <h3>${data.title}</h3>
+                                <p>${data.description}</p>
+                            `;
+                            grid.appendChild(item);
+                        });
+                });
+            })
+            .catch(err => {
+                document.getElementById('worksGrid').innerHTML = '<p>載入失敗，請稍後再試</p>';
+            });
+    </script>
+
 </body>
 </html>
