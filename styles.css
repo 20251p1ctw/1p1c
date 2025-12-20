@@ -191,10 +191,10 @@ h1, h2, h3 {
 
 /* ============== 通用區塊 ============== */
 .section {
-    padding: 140px 50px 100px;
+    padding: 100px 50px 100px;
     max-width: 1200px;
     margin: 0 auto;
-    scroll-margin-top: 120px;
+    scroll-margin-top: 10px;
     text-align: center;
 }
 
