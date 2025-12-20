@@ -175,16 +175,40 @@
                 }
 
                 const announcements = [];
-                // ...（for 迴圈解析檔案，同原本）
 
-                // 排序
+                // 這段是關鍵！您之前漏掉了
+                for (const file of files) {
+                    if (file.name.endsWith('.md')) {
+                        const contentResp = await fetch(file.download_url);
+                        const markdown = await contentResp.text();
+                        const frontMatter = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+                        if (frontMatter) {
+                            const yaml = frontMatter[1];
+                            const body = frontMatter[2];
+                            const title = yaml.match(/title: (.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '無標題';
+                            const date = yaml.match(/date: (.*)/)?.[1] || '';
+
+                            let image = yaml.match(/image:\s*(.*)/)?.[1]?.trim().replace(/^["']|["']$/g, '') || '';
+                            if (image && !image.startsWith('http') && !image.startsWith('/1p1c')) {
+                                image = '/1p1c' + image;
+                            }
+
+                            if (title) {
+                                announcements.push({ title, date, body, image });
+                            }
+                        }
+                    }
+                }
+
+                // 排序：新到舊
                 announcements.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 if (announcements.length === 0) {
-                    container.innerHTML = '<p style="text-align:center; color:#aaa; padding:60px;">目前沒有公告</p>';
+                    container.innerHTML = '<p style="text-align:center; color:#aaa; padding:60px;">目前沒有公告（但有檔案，格式可能有問題）</p>';
                     return;
                 }
 
+                // 顯示公告
                 container.innerHTML = announcements.map(ann => `
                     <article style="margin-bottom: 40px; padding: 20px; background: #FFFFFF; border-radius: 12px; text-align: center;">
                         ${ann.image ? `
@@ -203,7 +227,7 @@
 
             } catch (error) {
                 console.error('載入公告失敗:', error);
-                container.innerHTML = `<p style="text-align:center; color:#f66; padding:60px;">載入公告失敗：${error.message}（請檢查資料夾是否存在）</p>`;
+                container.innerHTML = `<p style="text-align:center; color:#f66; padding:60px;">載入公告失敗：${error.message}</p>`;
             }
         }
 
