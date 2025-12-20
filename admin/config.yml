@@ -2,15 +2,14 @@ backend:
   name: github
   repo: 20251p1ctw/1p1c
   branch: main
-  auth_type: implicit  # 重要：允許直接 GitHub 登入（搭配代理）
 
-media_folder: "images"  # 上傳圖片存這裡
+media_folder: "images"
 public_folder: "/images"
 
 collections:
   - name: "articles"
     label: "自訂文章"
-    folder: "articles"  # 文章存成 Markdown 檔案在 /articles 資料夾
+    folder: "articles"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
