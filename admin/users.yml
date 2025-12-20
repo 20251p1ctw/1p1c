@@ -1,0 +1,10 @@
+users:
+  - username: "rick"
+    password: "yourpassword123"  # 用 bcrypt hash 會更安全（下面教）
+    role: "admin"
+  - username: "js"
+    password: "anotherpass"
+    role: "editor"
+  - username: "oliver"
+    password: "pass3"
+    role: "admin"
